@@ -1,6 +1,8 @@
 # A Wavelet Image Coding Algorithm based on Human Visual System Characteristics
 ## Javier de la Rica
-## Polytechnic University of Catalonia, Barcelona
+*delaricajavier@gmail.com*
+
+**Polytechnic University of Catalonia, Barcelona**
 
 ##ABSTRACT
 
@@ -19,17 +21,27 @@ Two fundamental components of compression are redundancy and irrelevancy reducti
 To follow the system implemented the following blocks diagram is offered; firstly, the DWT is applied to the original input image, obtaining the decomposition in the wavelet domain. The classification follows the DWT, studying those sub-blocks that have more activity, so the system applies a higher weighting factor to those sub-blocks.
 The SPIHT algorithm is the one that codes the image into a bit stream, which would be sent, and the receiver would decode using the SPIHT decoder, reconstructing the image with the inverse DWT to obtain the original image.
 
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/1.JPG)
+
 ##2. DISCRETE WAVELET TRANSFORM ANALYSIS
 
 A discrete wavelet transform (DWT) is any wavelet transform for which the wavelets are discretely sampled. One of its advantages is temporal resolution, as it captures both frequency and location information. It is a separable processing which uses the same amount of input than output samples, using an iterated filter bank with High-Pass, H1, and Low-Pass, H0, filters and a decimation factor of 2, as shown in the following image.
+
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/2.JPG)
 
 This is the first step of the implementation, as the input image, for example, the cameraman from the Figure 3, is transformed into the Wavelet domain, obtaining the image in Figure 4, using the biorthogonal 4.4 filters. The transform is made for a single level, although the results could be improved increasing the amount of levels, which will be tested later.
 
 With the Discrete Wavelet Transform Analysis, four kind of sub-images are found; the diagonal, vertical, and horizontal detail images and the approximation image.
 
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/3.JPG)
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/4.JPG)
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/5.JPG)
+
 ##3. HUMAN VISUAL SYSTEM
 
 Once the Discrete Wavelet Transform Analysis is computed, the different sub-blocks obtained are split and studied depending on their own activity.
+
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/6.JPG)
 
 The first step is to compute the variance of each sub-block, and compare the absolute value of each coefficient in each sub-block with the variance of the same sub-block. If the absolute value of the coefficient is lower than the variance, it is set to 0, otherwise it is set to 1, obtaining then a binary image. 
 
@@ -65,6 +77,8 @@ The SPIHT coder consists in the following four sequential and iterative steps.
 
 4) Quantization-Step Update: Decrements n by 1 and goes back to step 2 (Sorting Pass).
 
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/7.JPG)
+
 A hierarchical quad-tree data structure for the wavelet transformed coefficients is formed. The tree is defined in such a way that each node has either no leaves or four offspring, which are from 2x2 adjacent pixels.
 
 At the end of the decoder, the system obtains a bitstream in which the first value is the input image size, and the rest is the coded image in binary values. This bitstream is the one that would be transferred and received in the decoder, as follows.
@@ -93,7 +107,11 @@ To evaluate the output image obtained, a MOS scale has been used, as it obtains 
 
 Asking 95 people the valuation of both input and output images the following values are the results obtained, obtaining a very different MOS value for each image.
 
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/8.JPG)
+
 Furthermore, the following table shows the representation of the PSNR for the system with and without taking into account the HVS characteristics depending on the bitrate applied into the SPIHT coder. It shows a considerable increase of the PSNR the higher the bitrate is, although the PSNR does not differ much between the algorithms with the HVS characteristics than the one that does not consider it.
+
+![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/9.JPG)
 
 Finally, a simple Matlab interface has been programmed in order to observe the different results using different images as the Lena, Fruit or People images.
 
