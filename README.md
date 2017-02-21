@@ -1,8 +1,7 @@
 # A Wavelet Image Coding Algorithm based on Human Visual System Characteristics
-## Javier de la Rica
-*delaricajavier@gmail.com*
-
-**Polytechnic University of Catalonia, Barcelona**
+| ![Javier de la Rica](/Images/image-javier.jpg) | ![Logo](/Images/upc_etsetb.jpg) |
+| :---: | :---: |
+| Javier de la Rica | delaricajavier@gmail.com |
 
 ##ABSTRACT
 
