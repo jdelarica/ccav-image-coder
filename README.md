@@ -3,13 +3,13 @@
 | :---: | :---: |
 | Javier de la Rica | delaricajavier@gmail.com |
 
-##ABSTRACT
+## ABSTRACT
 
 In this paper, an image-coding algorithm based on the discrete wavelet transform and the human visual system characteristics is proposed. After applying the DWT to an input image and dividing the resulting sub-blocks, different perceptual weights based on the activity of each block are applied to each one of them. Finally, the SPIHT algorithm is computed to obtain a bit stream and decode it to obtain the output image.
 
 Keywords— Wavelet Transform DWT; SPIHT; Texture Analysis; Human Visual System, Variance
 
-##1. INTRODUCTION
+## 1. INTRODUCTION
 
 Image compression is minimizing the size in bytes of a graphics file without degrading the quality of the image to an unacceptable level. The reduction file size allows more images to be stored in a given amount of disk or memory space. It also reduces the time required for images to be sent over the Internet or downloaded from Web pages.
 
@@ -22,7 +22,7 @@ The SPIHT algorithm is the one that codes the image into a bit stream, which wou
 
 ![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/1.JPG)
 
-##2. DISCRETE WAVELET TRANSFORM ANALYSIS
+## 2. DISCRETE WAVELET TRANSFORM ANALYSIS
 
 A discrete wavelet transform (DWT) is any wavelet transform for which the wavelets are discretely sampled. One of its advantages is temporal resolution, as it captures both frequency and location information. It is a separable processing which uses the same amount of input than output samples, using an iterated filter bank with High-Pass, H1, and Low-Pass, H0, filters and a decimation factor of 2, as shown in the following image.
 
@@ -36,7 +36,7 @@ With the Discrete Wavelet Transform Analysis, four kind of sub-images are found;
 ![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/4.JPG)
 ![I](https://github.com/jdelarica/CCAV_ImageCoder/blob/master/Images/5.JPG)
 
-##3. HUMAN VISUAL SYSTEM
+## 3. HUMAN VISUAL SYSTEM
 
 Once the Discrete Wavelet Transform Analysis is computed, the different sub-blocks obtained are split and studied depending on their own activity.
 
@@ -46,7 +46,7 @@ The first step is to compute the variance of each sub-block, and compare the abs
 
 Later on, the sub-blocks are weighted depending on their activity, and therefore, their importance in the human visual system, so those sub-blocks who have more coefficients set to 1 on the previous step, are weighted with a weighting value of 0.52, and those who have less with a weighting value of 0.48. 
 
-##4. SPIHT ALGORITHM
+## 4. SPIHT ALGORITHM
 
 The Set Partitioning in Hierarchical Trees algorithm transmits wavelet transformed image in bit plane order with the most significant bits first. Compression happens when only some of the bit planes are transmitted. SPIHT offers an alternative explanation of the principles of the Embedded Zerotree Wavelet operation, so that the reasons for its excellent performance can be better understood, providing a better performance than EZW.
 
@@ -58,7 +58,7 @@ b.	Ordered bit plane transmission of refinement bits.
 
 c.	Exploitation of the self-similarity of the image wavelet transform across different scales.
 
-###4.1. SPIHT Coder
+### 4.1. SPIHT Coder
 
 Since the order in which the subsets are tested for significance is important, in a practical implementation the significance information is stored in three ordered lists, called list of insignificant sets (LIST), list of insignificant pixels (LIP) and list of significant pixels (LSP). In all lists each entry is identified by a coordinate (i,j), which in the LIP and LSP represents individual pixels, while in the LIST represents either the set D(i,j) or L(i,j).
 
@@ -82,7 +82,7 @@ A hierarchical quad-tree data structure for the wavelet transformed coefficients
 
 At the end of the decoder, the system obtains a bitstream in which the first value is the input image size, and the rest is the coded image in binary values. This bitstream is the one that would be transferred and received in the decoder, as follows.
 
-###4.2. SPIHT Decoder
+### 4.2. SPIHT Decoder
 
 The SPIHT decoder emulates de coder, as it maintains exactly the same data structure as the coder, using symmetric sorting and refinement steps.
 
@@ -90,13 +90,13 @@ To examine the zero-tree the coder receives a bit telling whether the tree is si
 
 At the end of the decoder, an image in the Wavelet domain is obtained, ready to be reconstructed using the Discrete Wavelet Transform Synthesis to obtain the original image.
 
-##5. DISCRETE WAVELET TRANSFORM SYNTHESIS
+## 5. DISCRETE WAVELET TRANSFORM SYNTHESIS
 
 The Discrete Wavelet Transform Synthesis reconstructs the received image from the SPIHT Decoder in the wavelet domain, with the same High-Pass and Low-Pass filters than in the Analysis, this time with an interpolation factor of 2.
 
 The levels used in the synthesis must be exactly the same as in the analysis, as it is a symmetric system with the same amount of filters and interpolation steps.
 	
-##6. RESULTS
+## 6. RESULTS
 
 To evaluate the performance of the proposed image-encoding algorithm, experiments are conducted to different international standard images, as the Cameraman and Lena, all of 256x256.
 
@@ -114,7 +114,7 @@ Furthermore, the following table shows the representation of the PSNR for the sy
 
 Finally, a simple Matlab interface has been programmed in order to observe the different results using different images as the Lena, Fruit or People images.
 
-##7. CONCLUSIONS
+## 7. CONCLUSIONS
 
 This paper established an image-coding algorithm, in which the sensitivity of human vision system is considered. Different perceptual weights are applied into different DWT sub-blocks of the input image. 
 
@@ -128,7 +128,7 @@ The system could be improved using better activity/texture decisions, as the wei
 
 In the annex, the code of the whole project can be observed, with some explanations of each function in order to better understand each block.
 
-##8. REFERENCES
+## 8. REFERENCES
 
 [1] Li-Xiong Liu, Wei-Wei Wang, “A Wavelet Image Coding Algorithm based on Human Visual System Characteristics”, International Conference on Wavelet Analysis and Pattern Recognition, Hong-Kong, 30-3 Aug. 2008.
 
